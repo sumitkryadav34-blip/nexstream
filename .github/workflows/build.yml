@@ -1,18 +1,5 @@
-name: Build APK
-on: [push]
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: subosito/flutter-action@v2
+      - name: Upload APK
+        uses: actions/upload-artifact@v4  # v3 ki jagah v4 karein
         with:
-          channel: 'stable'
-          flutter-version: '3.19.0'
-      - run: flutter pub get
-      - run: flutter build apk --release --no-tree-shake-icons
-      - name: Upload
-        uses: actions/upload-artifact@v4
-        with:
-          name: nexstream-apk
+          name: nexstream-app
           path: build/app/outputs/flutter-apk/app-release.apk
